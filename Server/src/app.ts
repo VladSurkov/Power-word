@@ -12,7 +12,10 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 8000;
 
-app.use(cors()); // TODO: Разобраться что это
+app.use(cors({
+    credentials: true,
+    origin: "*"
+})); // TODO: Разобраться что это
 app.use(express.json()); // TODO: Разобраться что это
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true })); // TODO: Разобраться что это

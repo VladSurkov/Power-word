@@ -11,7 +11,7 @@ import mailService from "./mail-service";
 import tokenService from "./token-service";
 
 class UserService {
-    async registration (email: string, password: string) {
+    async registration (username: string, email: string, password: string) {
         const candidate = await userModel.findOne({ email });
         
         if (candidate) {
@@ -21,7 +21,7 @@ class UserService {
         const hashPassword = await bcrypt.hash(password, 3);
         const activationLink = uuidv4();
 
-        const user = await userModel.create({ email, password: hashPassword, activationLink });
+        const user = await userModel.create({ username, email, password: hashPassword, activationLink });
         await mailService.sendActivationMail(email, `${process.env.API_URL}/api/activate/${activationLink}`);
 
         const userDto = new UserDto(user); // id email isActivated
