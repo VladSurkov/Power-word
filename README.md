@@ -1,1 +1,1 @@
-"# Power-word" 
+Power Word application
