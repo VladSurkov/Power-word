@@ -14,7 +14,7 @@ const port = process.env.PORT || 8000;
 
 app.use(cors({
     credentials: true,
-    origin: "*"
+    origin: ["*"]
 })); // TODO: Разобраться что это
 app.use(express.json()); // TODO: Разобраться что это
 app.use(cookieParser());

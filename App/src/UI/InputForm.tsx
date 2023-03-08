@@ -5,6 +5,9 @@ import { TextInput, StyleSheet, View } from 'react-native';
 
 const InputForm = (props: {
     placeholder: string,
+    value: string,
+    onChangeText: any,
+    type: string
 }) => {
     const [isFocused, setIsFocused] = useState(false);
 
@@ -20,6 +23,7 @@ const InputForm = (props: {
                 placeholderTextColor='#828BC9'
                 onFocus={ () => {setIsFocused(true)} }
                 onBlur={ () => {setIsFocused(false)} }
+                onChangeText={props.onChangeText}
             />
         </View>
     )

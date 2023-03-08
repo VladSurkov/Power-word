@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 
 const ButtonForm = (props: any) => {
     return (
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={props.onPress}>
             <Text style={styles.text}>{props.children}</Text>
         </TouchableOpacity>
     )

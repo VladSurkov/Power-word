@@ -1,13 +1,25 @@
-import React, { useState } from 'react';
+import React, { createContext, useState } from 'react';
 
 // Components
 import { NavigationContainer } from '@react-navigation/native';
 import { Text } from 'react-native';
 
 import Navigator from './src/Navigation/Navigator';
+import Store from './src/Store/store';
 
 // Fonts
 import * as Font from 'expo-font';
+
+
+interface IStore {
+  store: Store
+}
+
+const store = new Store();
+
+export const Context = createContext<IStore>({
+  store
+});
 
 export default function App() {
   const [fontLoaded, setFontLoaded] = useState(false);
@@ -25,9 +37,13 @@ export default function App() {
 
   if (fontLoaded) {
     return (
-      <NavigationContainer>
-        <Navigator />
-      </NavigationContainer>
+      <Context.Provider value={{
+        store
+      }}>
+        <NavigationContainer>
+          <Navigator />
+        </NavigationContainer>
+      </Context.Provider>
     );
   } else {
     // TODO: preloader or the downloading page
